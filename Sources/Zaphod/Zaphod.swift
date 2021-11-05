@@ -79,21 +79,17 @@ open class Zaphod{
         let request = APIRequest(method: .get, url: url)
         request.headers = [HTTPHeader(field: "Authorization", value: config.token)]
         
-        let fetch = APIClient()
-        fetch.perform(request) {
+        APIClient<ZAppInfo>().fetch(request) {
             result in
             switch result {
-            case .success(let response):
-                if let response = try? response.decode(to: ZAppInfo.self) {
-                    let info = response.body
-                    print("Received app info: \(info)")
-                } else {
-                    print("Failed to decode response")
-                }
+            case .success(let info):
+                print("Received app info: \(info)")
             case .failure(let error):
                 print("Error performing network request \(error)")
             }
         }
+
+        
     }
     
     func debugReset() {
