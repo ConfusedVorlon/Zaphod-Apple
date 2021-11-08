@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Example_ios_macApp: App {
+struct Example_SwiftUIApp: App {
     init() {
         //ensure that Config.shared is called to initialise Zaphod
         //you'll normally do this in appDidFinishLaunching

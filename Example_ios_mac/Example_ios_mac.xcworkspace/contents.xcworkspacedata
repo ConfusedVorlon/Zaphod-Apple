@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "container:Example_ios_mac.xcodeproj">
+      location = "container:/Users/rob/Documents/Development/Mac/Packages/Zaphod/Example_ios_mac/Example_SwiftUI.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:..">

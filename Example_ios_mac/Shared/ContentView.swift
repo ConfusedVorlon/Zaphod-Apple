@@ -12,9 +12,8 @@ struct ContentView: View {
     @Environment(\.openURL) var openURL
     
     var body: some View {
-        VStack {
-            Text("Zaphod mini Demo")
-                .padding()
+        VStack(spacing:20) {
+            Text("Zaphod SwiftUI Demo")
             
             WhatsNewButton(){
                 openURL(Zaphod.shared.whatsNewURL)
@@ -23,7 +22,11 @@ struct ContentView: View {
             Button(action: {
                 Zaphod.shared.debugReset()
             }) {
-                Text("Reset Zaphod Settings")
+                VStack {
+                    Text("Reset Settings")
+                    Text("Clears stored state and re-queries the server")
+                        .font(.footnote)
+                }
             }
         }
         .padding()

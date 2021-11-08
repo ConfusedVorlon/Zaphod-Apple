@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D4354A8A27355A13004975FE /* Example_ios_macApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A7A27355A11004975FE /* Example_ios_macApp.swift */; };
-		D4354A8B27355A13004975FE /* Example_ios_macApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A7A27355A11004975FE /* Example_ios_macApp.swift */; };
 		D4354A8C27355A13004975FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A7B27355A11004975FE /* ContentView.swift */; };
 		D4354A8D27355A13004975FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A7B27355A11004975FE /* ContentView.swift */; };
 		D4354A8E27355A13004975FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4354A7C27355A13004975FE /* Assets.xcassets */; };
@@ -17,16 +15,18 @@
 		D4354A9E27355BDF004975FE /* Zaphod in Frameworks */ = {isa = PBXBuildFile; productRef = D4354A9D27355BDF004975FE /* Zaphod */; };
 		D4354AA02735B07A004975FE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A9F2735B07A004975FE /* Config.swift */; };
 		D4354AA12735B07A004975FE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A9F2735B07A004975FE /* Config.swift */; };
+		D4354AA327397B7E004975FE /* Example_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */; };
+		D4354AA427397B7E004975FE /* Example_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D4354A7A27355A11004975FE /* Example_ios_macApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Example_ios_macApp.swift; sourceTree = "<group>"; };
 		D4354A7B27355A11004975FE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		D4354A7C27355A13004975FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D4354A8127355A13004975FE /* Example_ios_mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_ios_mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D4354A8727355A13004975FE /* Example_ios_mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_ios_mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4354A8127355A13004975FE /* Example_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4354A8727355A13004975FE /* Example_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4354A8927355A13004975FE /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		D4354A9F2735B07A004975FE /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example_SwiftUIApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +62,7 @@
 		D4354A7927355A11004975FE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
-				D4354A7A27355A11004975FE /* Example_ios_macApp.swift */,
+				D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */,
 				D4354A7B27355A11004975FE /* ContentView.swift */,
 				D4354A7C27355A13004975FE /* Assets.xcassets */,
 				D4354A9F2735B07A004975FE /* Config.swift */,
@@ -73,8 +73,8 @@
 		D4354A8227355A13004975FE /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D4354A8127355A13004975FE /* Example_ios_mac.app */,
-				D4354A8727355A13004975FE /* Example_ios_mac.app */,
+				D4354A8127355A13004975FE /* Example_SwiftUI.app */,
+				D4354A8727355A13004975FE /* Example_SwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,9 +97,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D4354A8027355A13004975FE /* Example_ios_mac (iOS) */ = {
+		D4354A8027355A13004975FE /* Example_SwiftUI (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4354A9227355A13004975FE /* Build configuration list for PBXNativeTarget "Example_ios_mac (iOS)" */;
+			buildConfigurationList = D4354A9227355A13004975FE /* Build configuration list for PBXNativeTarget "Example_SwiftUI (iOS)" */;
 			buildPhases = (
 				D4354A7D27355A13004975FE /* Sources */,
 				D4354A7E27355A13004975FE /* Frameworks */,
@@ -109,17 +109,17 @@
 			);
 			dependencies = (
 			);
-			name = "Example_ios_mac (iOS)";
+			name = "Example_SwiftUI (iOS)";
 			packageProductDependencies = (
 				D4354A9B27355BD9004975FE /* Zaphod */,
 			);
 			productName = "Example_ios_mac (iOS)";
-			productReference = D4354A8127355A13004975FE /* Example_ios_mac.app */;
+			productReference = D4354A8127355A13004975FE /* Example_SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
-		D4354A8627355A13004975FE /* Example_ios_mac (macOS) */ = {
+		D4354A8627355A13004975FE /* Example_SwiftUI (macOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D4354A9527355A13004975FE /* Build configuration list for PBXNativeTarget "Example_ios_mac (macOS)" */;
+			buildConfigurationList = D4354A9527355A13004975FE /* Build configuration list for PBXNativeTarget "Example_SwiftUI (macOS)" */;
 			buildPhases = (
 				D4354A8327355A13004975FE /* Sources */,
 				D4354A8427355A13004975FE /* Frameworks */,
@@ -129,12 +129,12 @@
 			);
 			dependencies = (
 			);
-			name = "Example_ios_mac (macOS)";
+			name = "Example_SwiftUI (macOS)";
 			packageProductDependencies = (
 				D4354A9D27355BDF004975FE /* Zaphod */,
 			);
 			productName = "Example_ios_mac (macOS)";
-			productReference = D4354A8727355A13004975FE /* Example_ios_mac.app */;
+			productReference = D4354A8727355A13004975FE /* Example_SwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -155,7 +155,7 @@
 					};
 				};
 			};
-			buildConfigurationList = D4354A7827355A10004975FE /* Build configuration list for PBXProject "Example_ios_mac" */;
+			buildConfigurationList = D4354A7827355A10004975FE /* Build configuration list for PBXProject "Example_SwiftUI" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -168,8 +168,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D4354A8027355A13004975FE /* Example_ios_mac (iOS) */,
-				D4354A8627355A13004975FE /* Example_ios_mac (macOS) */,
+				D4354A8027355A13004975FE /* Example_SwiftUI (iOS) */,
+				D4354A8627355A13004975FE /* Example_SwiftUI (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -199,8 +199,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4354A8C27355A13004975FE /* ContentView.swift in Sources */,
-				D4354A8A27355A13004975FE /* Example_ios_macApp.swift in Sources */,
 				D4354AA02735B07A004975FE /* Config.swift in Sources */,
+				D4354AA327397B7E004975FE /* Example_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,8 +209,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4354A8D27355A13004975FE /* ContentView.swift in Sources */,
-				D4354A8B27355A13004975FE /* Example_ios_macApp.swift in Sources */,
 				D4354AA12735B07A004975FE /* Config.swift in Sources */,
+				D4354AA427397B7E004975FE /* Example_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +350,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-ios-mac";
-				PRODUCT_NAME = Example_ios_mac;
+				PRODUCT_NAME = Example_SwiftUI;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -380,7 +380,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-ios-mac";
-				PRODUCT_NAME = Example_ios_mac;
+				PRODUCT_NAME = Example_SwiftUI;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -409,8 +409,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-ios-mac";
-				PRODUCT_NAME = Example_ios_mac;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-SwiftUI";
+				PRODUCT_NAME = Example_SwiftUI;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -437,8 +437,8 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-ios-mac";
-				PRODUCT_NAME = Example_ios_mac;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-SwiftUI";
+				PRODUCT_NAME = Example_SwiftUI;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -448,7 +448,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D4354A7827355A10004975FE /* Build configuration list for PBXProject "Example_ios_mac" */ = {
+		D4354A7827355A10004975FE /* Build configuration list for PBXProject "Example_SwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4354A9027355A13004975FE /* Debug */,
@@ -457,7 +457,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4354A9227355A13004975FE /* Build configuration list for PBXNativeTarget "Example_ios_mac (iOS)" */ = {
+		D4354A9227355A13004975FE /* Build configuration list for PBXNativeTarget "Example_SwiftUI (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4354A9327355A13004975FE /* Debug */,
@@ -466,7 +466,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D4354A9527355A13004975FE /* Build configuration list for PBXNativeTarget "Example_ios_mac (macOS)" */ = {
+		D4354A9527355A13004975FE /* Build configuration list for PBXNativeTarget "Example_SwiftUI (macOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D4354A9627355A13004975FE /* Debug */,
