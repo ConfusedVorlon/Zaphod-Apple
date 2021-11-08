@@ -6,72 +6,103 @@
 //
 
 import Foundation
+
+
+#if !os(watchOS) && !os(tvOS) && canImport(UIKit)
+
 import UIKit
 
-public class UIWhatsNewButton:UIView {
+public class UIWhatsNewButton:UIButton {
  
-    weak var button:UIButton?
-    private var info:ZaphodInfo
-    @IBInspectable  var newColor:UIColor {
+    private var info:ZaphodInfo = Zaphod.shared.ui
+    @IBInspectable  var newColor:UIColor = .red {
         didSet {
-            updateButton()
+            update()
+        }
+    }
+ 
+    /**
+     An initializer that initializes the object with a NSCoder object.
+     - Parameter aDecoder: A NSCoder instance.
+     */
+    public required init?(coder aDecoder: NSCoder) {
+      super.init(coder: aDecoder)
+      prepare()
+    }
+    
+    /**
+     An initializer that initializes the object with a CGRect object.
+     If AutoLayout is used, it is better to initilize the instance
+     using the init() initializer.
+     - Parameter frame: A CGRect instance.
+     */
+    public override init(frame: CGRect) {
+      super.init(frame: frame)
+      /// Set these here to avoid overriding storyboard values
+      prepare()
+    }
+    
+    deinit {
+        if let changeToken = changeToken {
+            NotificationCenter.default.removeObserver(changeToken)
         }
     }
 
-    var action:(()->Void)?
-    
-    public init(info: ZaphodInfo = Zaphod.shared.ui,
-                newColor: UIColor = UIColor.red,
-                type: UIButton.ButtonType = .system,
-                action:(()->Void)? = nil) {
-        let aButton = UIButton.init(type: type)
-        self.button = aButton
-        self.info = info
-        self.newColor = newColor
-        self.action = action
+    var changeToken: NSObjectProtocol?
+    private func prepare() {
+        setTitle("What's New", for: .normal)
+        update()
         
-        super.init(frame: .zero)
-
-        self.translatesAutoresizingMaskIntoConstraints = false
-        setupButton()
+        changeToken = NotificationCenter.default.addObserver(forName: ZaphodInfo.Notif.changed, object: nil, queue: .main) { [weak self] _ in
+            self?.update()
+        }
+        
+        self.addTarget(self, action: #selector(defaultAction), for: .touchUpInside)
     }
     
-    required init?(coder: NSCoder) {
-        let aButton = UIButton.init(type: .system)
-        self.button = aButton
-        self.info = Zaphod.shared.ui
-        self.newColor = UIColor.red
-        self.action = nil
-        
-        super.init(frame: .zero)
-        
-        self.translatesAutoresizingMaskIntoConstraints = false
-        setupButton()
+    open func update() {
+            if self.info.hasUnreadNews {
+                self.setImage(self.newImage, for: .normal)
+            }
+            else {
+                //should just be able to set nil here - but it doesn't work
+                //iOS keeps the old image in play (iOS 15)
+                self.setImage(self.empty, for: .normal)
+            }
     }
     
-    private func setupButton() {
-        guard let button = button else {
+    @objc
+    /// if there are no other targets set - then the button will attempt to open the what's new page in safari
+    /// presenting over the current viewController
+    open func defaultAction() {
+        //just us!
+        guard allTargets.count == 1 else {
             return
         }
+        let url = Zaphod.shared.whatsNewURL
         
-        self.addSubview(button)
-        
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("What's New", for: .normal)
-
-        button.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        button.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        button.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        button.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        
-        updateButton()
+        if let vc = self.firstViewController {
+            vc.openSafari(url: url)
+        }
+        else {
+            UIApplication.shared.open(url)
+        }
     }
     
-    private func updateButton() {
-        button?.setImage(newImage, for: .normal)
-    }
+    /// Dummy empty image to allow setting image to 'nil'
+    private var empty:UIImage? {
+        let rect = CGRect(origin: .zero, size: CGSize(width: 1, height: 1))
+        UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
     
-    var newImage:UIImage? {
+        return image?.withRenderingMode(.alwaysOriginal)
+    }
+     
+    
+    /// The image shown when there is new news available
+    open var newImage:UIImage? {
         let rect = CGRect(origin: .zero, size: CGSize(width: 14, height: 14))
         UIGraphicsBeginImageContextWithOptions(rect.size, false, 0.0)
         
@@ -88,3 +119,5 @@ public class UIWhatsNewButton:UIView {
     }
 
 }
+
+#endif

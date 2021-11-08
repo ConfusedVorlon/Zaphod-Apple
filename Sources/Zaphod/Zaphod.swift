@@ -38,9 +38,7 @@ open class Zaphod{
             fatalError("Error - you must call Zaphod.setup(<config>) before accessing Zaphod.shared")
         }
         self.config = config
-        
-
-        
+          
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(prefsDidSync),
@@ -51,6 +49,8 @@ open class Zaphod{
             //PreferenceSync.start()
             self.getAppInfo()
         }
+        
+        updateUI()
     }
 
     @objc private func prefsDidSync() {
@@ -58,7 +58,7 @@ open class Zaphod{
         updateUI()
     }
     
-    private func updateUI() {
+    internal func updateUI() {
         DispatchQueue.main.async {
             if let latestNews = Preference.appInfo?.latestNews  {
                 self.ui.hasUnreadNews = (latestNews > Preference.newsLastViewed)

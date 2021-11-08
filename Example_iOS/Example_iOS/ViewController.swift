@@ -20,5 +20,12 @@ class ViewController: UIViewController {
         Zaphod.shared.debugReset()
     }
     
+    @IBAction func showFAQ(_ sender: Any) {
+        let faqURL = Zaphod.shared.faqURL
+        openSafari(url: faqURL)
+    }
+    
+    
+    
 }
 

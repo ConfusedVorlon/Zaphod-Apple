@@ -32,7 +32,7 @@ public class ZaphodInfo {
         }
     }
     
-    private func sendChangeNotification() {
+    internal func sendChangeNotification() {
         NotificationCenter.default.post(name: Notif.changed, object: self)
     }
     
