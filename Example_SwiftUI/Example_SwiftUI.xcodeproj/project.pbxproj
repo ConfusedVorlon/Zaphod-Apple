@@ -11,12 +11,12 @@
 		D4354A8D27355A13004975FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A7B27355A11004975FE /* ContentView.swift */; };
 		D4354A8E27355A13004975FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4354A7C27355A13004975FE /* Assets.xcassets */; };
 		D4354A8F27355A13004975FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4354A7C27355A13004975FE /* Assets.xcassets */; };
-		D4354A9C27355BD9004975FE /* Zaphod in Frameworks */ = {isa = PBXBuildFile; productRef = D4354A9B27355BD9004975FE /* Zaphod */; };
-		D4354A9E27355BDF004975FE /* Zaphod in Frameworks */ = {isa = PBXBuildFile; productRef = D4354A9D27355BDF004975FE /* Zaphod */; };
 		D4354AA02735B07A004975FE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A9F2735B07A004975FE /* Config.swift */; };
 		D4354AA12735B07A004975FE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A9F2735B07A004975FE /* Config.swift */; };
 		D4354AA327397B7E004975FE /* Example_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */; };
 		D4354AA427397B7E004975FE /* Example_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */; };
+		D4F6B2FB2739A38100E62B8D /* Zaphod in Frameworks */ = {isa = PBXBuildFile; productRef = D4F6B2FA2739A38100E62B8D /* Zaphod */; };
+		D4F6B2FD2739A39800E62B8D /* Zaphod in Frameworks */ = {isa = PBXBuildFile; productRef = D4F6B2FC2739A39800E62B8D /* Zaphod */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4354A9C27355BD9004975FE /* Zaphod in Frameworks */,
+				D4F6B2FB2739A38100E62B8D /* Zaphod in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,7 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4354A9E27355BDF004975FE /* Zaphod in Frameworks */,
+				D4F6B2FD2739A39800E62B8D /* Zaphod in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,7 +111,7 @@
 			);
 			name = "Example_SwiftUI (iOS)";
 			packageProductDependencies = (
-				D4354A9B27355BD9004975FE /* Zaphod */,
+				D4F6B2FA2739A38100E62B8D /* Zaphod */,
 			);
 			productName = "Example_ios_mac (iOS)";
 			productReference = D4354A8127355A13004975FE /* Example_SwiftUI.app */;
@@ -131,7 +131,7 @@
 			);
 			name = "Example_SwiftUI (macOS)";
 			packageProductDependencies = (
-				D4354A9D27355BDF004975FE /* Zaphod */,
+				D4F6B2FC2739A39800E62B8D /* Zaphod */,
 			);
 			productName = "Example_ios_mac (macOS)";
 			productReference = D4354A8727355A13004975FE /* Example_SwiftUI.app */;
@@ -349,7 +349,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-ios-mac";
+				PRODUCT_BUNDLE_IDENTIFIER = com.HobbyistSoftware.Example;
 				PRODUCT_NAME = Example_SwiftUI;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -379,7 +379,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-ios-mac";
+				PRODUCT_BUNDLE_IDENTIFIER = com.HobbyistSoftware.Example;
 				PRODUCT_NAME = Example_SwiftUI;
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -409,7 +409,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-SwiftUI";
+				PRODUCT_BUNDLE_IDENTIFIER = com.HobbyistSoftware.Example;
 				PRODUCT_NAME = Example_SwiftUI;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -437,7 +437,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.HobbyistSoftware.Example-SwiftUI";
+				PRODUCT_BUNDLE_IDENTIFIER = com.HobbyistSoftware.Example;
 				PRODUCT_NAME = Example_SwiftUI;
 				SDKROOT = macosx;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -478,11 +478,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		D4354A9B27355BD9004975FE /* Zaphod */ = {
+		D4F6B2FA2739A38100E62B8D /* Zaphod */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Zaphod;
 		};
-		D4354A9D27355BDF004975FE /* Zaphod */ = {
+		D4F6B2FC2739A39800E62B8D /* Zaphod */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Zaphod;
 		};

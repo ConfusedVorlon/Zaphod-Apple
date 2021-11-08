@@ -14,20 +14,25 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing:20) {
             Text("Zaphod SwiftUI Demo")
+                .font(.headline)
             
             WhatsNewButton(){
                 openURL(Zaphod.shared.whatsNewURL)
             }
             
-            Button(action: {
-                Zaphod.shared.debugReset()
-            }) {
-                VStack {
-                    Text("Reset Settings")
-                    Text("Clears stored state and re-queries the server")
-                        .font(.footnote)
-                }
+            Button("Show FAQs") {
+                openURL(Zaphod.shared.faqURL)
             }
+            
+            VStack(spacing:5) {
+                Button("Reset Settings"){
+                    Zaphod.shared.debugReset()
+                }
+                Text("Clears stored state and re-queries the server")
+                    .font(.footnote)
+            }
+            .padding(.bottom)
+
         }
         .padding()
         
