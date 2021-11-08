@@ -6,6 +6,6 @@
 //
 
 import Foundation
-struct ZAppInfo:Codable {
+struct ZAppInfo:ZJson {
     let app:ZApp
 }

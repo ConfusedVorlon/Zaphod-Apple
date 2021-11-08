@@ -16,7 +16,7 @@ open class Zaphod{
     public static let shared = Zaphod()
     
     private static var config:ZaphodConfig?
-    private let config:ZaphodConfig
+    internal let config:ZaphodConfig
     
     public let ui = ZaphodInfo()
     
@@ -31,11 +31,6 @@ open class Zaphod{
             self,
             name: PreferenceSync.Notif.changed,
             object: nil)
-    }
-
-    
-    public func markNewsAsSeen() {
-        Preference.newsLastViewed = Date()
     }
     
     private init() {
@@ -65,7 +60,7 @@ open class Zaphod{
     
     private func updateUI() {
         DispatchQueue.main.async {
-            if let latestNews = Preference.latestNews  {
+            if let latestNews = Preference.appInfo?.latestNews  {
                 self.ui.hasUnreadNews = (latestNews > Preference.newsLastViewed)
             }
             else {
@@ -83,7 +78,9 @@ open class Zaphod{
             result in
             switch result {
             case .success(let info):
-                print("Received app info: \(info)")
+                Preference.appInfo = info.app
+
+                self.updateUI()
             case .failure(let error):
                 print("Error performing network request \(error)")
             }
@@ -92,10 +89,13 @@ open class Zaphod{
         
     }
     
-    func debugReset() {
+    open func debugReset() {
         Preference.debugReset()
         updateUI()
-        getAppInfo()
+        
+        DispatchQueue.background.asyncAfter(delay: 2) {
+            self.getAppInfo()
+        }
     }
 
 }

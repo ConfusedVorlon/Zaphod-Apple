@@ -9,9 +9,26 @@ import SwiftUI
 import Zaphod
 
 struct ContentView: View {
+    @Environment(\.openURL) var openURL
+    
     var body: some View {
-        Text("Zaphod().name")
-            .padding()
+        VStack {
+            Text("Zaphod mini Demo")
+                .padding()
+            
+            WhatsNewButton(){
+                openURL(Zaphod.shared.whatsNewURL)
+            }
+            
+            Button(action: {
+                Zaphod.shared.debugReset()
+            }) {
+                Text("Reset Zaphod Settings")
+            }
+        }
+        .padding()
+        
+
     }
 }
 

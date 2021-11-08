@@ -12,7 +12,7 @@ class Preference {
 
     private enum Key:String {
         case newsLastViewed
-        case latestNews
+        case appInfo
     
         var key:String {
             return Preference.prefix + self.rawValue
@@ -36,17 +36,22 @@ class Preference {
         }
     }
     
-    static var latestNews:Date? {
+    
+    static var appInfo:ZApp? {
         get {
-            return pref(for: .newsLastViewed) as? Date
+            guard let data = pref(for: .appInfo) as? Data else {
+                return nil
+            }
+            
+            return data.decode()
         }
         set {
-            setPref(newValue, for: .newsLastViewed)
+            setPref(newValue?.jsonData, for: .appInfo)
         }
     }
     
     static func debugReset() {
         setPref(nil, for: .newsLastViewed)
-        setPref(nil, for: .latestNews)
+        setPref(nil, for: .appInfo)
     }
 }

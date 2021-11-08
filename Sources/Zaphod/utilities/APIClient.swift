@@ -51,7 +51,6 @@ class APIRequest {
     }
 }
 
-
 enum APIError: Error {
     case invalidURL
     case requestFailed
@@ -60,12 +59,12 @@ enum APIError: Error {
     case noDataInResponse
 }
 
-struct APIClient<ResponseType> {
+struct APIClient<ResponseType> where ResponseType:Decodable {
     typealias APIClientCompletion<Body> = (Result<Body,APIError>) -> Void
 
     private let session = URLSession.shared
         
-    func fetch(_ request: APIRequest,_ completion: @escaping APIClientCompletion<ResponseType>)  where ResponseType:Decodable {
+    func fetch(_ request: APIRequest,_ completion: @escaping APIClientCompletion<ResponseType>)   {
         
         let task = session.dataTask(with: request.urlRequest) { (data, response, error) in
             guard let httpResponse = response as? HTTPURLResponse else {
@@ -80,7 +79,9 @@ struct APIClient<ResponseType> {
                 completion(.failure(.noDataInResponse));
                 return
             }
-            guard let response = try? JSONDecoder().decode(ResponseType.self, from: data) else {
+
+            
+            guard let response:ResponseType = data.decode() else {
                 completion(.failure(.decodingFailure))
                 return
             }
@@ -89,5 +90,6 @@ struct APIClient<ResponseType> {
         }
         task.resume()
     }
+    
     
 }
