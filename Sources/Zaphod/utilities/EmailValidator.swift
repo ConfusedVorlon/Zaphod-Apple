@@ -2,7 +2,7 @@
 //  File.swift
 //  
 //
-//  Created by Rob Jonson on 09/11/2021.
+//  https://multithreaded.stitchfix.com/blog/2016/11/02/email-validation-swift/
 //
 
 import Foundation
