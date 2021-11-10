@@ -11,10 +11,10 @@
 		D4354A8D27355A13004975FE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A7B27355A11004975FE /* ContentView.swift */; };
 		D4354A8E27355A13004975FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4354A7C27355A13004975FE /* Assets.xcassets */; };
 		D4354A8F27355A13004975FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4354A7C27355A13004975FE /* Assets.xcassets */; };
-		D4354AA02735B07A004975FE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A9F2735B07A004975FE /* Config.swift */; };
-		D4354AA12735B07A004975FE /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354A9F2735B07A004975FE /* Config.swift */; };
 		D4354AA327397B7E004975FE /* Example_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */; };
 		D4354AA427397B7E004975FE /* Example_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */; };
+		D4BCB298273C090F007851E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCB297273C090F007851E5 /* AppDelegate.swift */; };
+		D4BCB299273C090F007851E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCB297273C090F007851E5 /* AppDelegate.swift */; };
 		D4F6B2FB2739A38100E62B8D /* Zaphod in Frameworks */ = {isa = PBXBuildFile; productRef = D4F6B2FA2739A38100E62B8D /* Zaphod */; };
 		D4F6B2FD2739A39800E62B8D /* Zaphod in Frameworks */ = {isa = PBXBuildFile; productRef = D4F6B2FC2739A39800E62B8D /* Zaphod */; };
 /* End PBXBuildFile section */
@@ -25,8 +25,9 @@
 		D4354A8127355A13004975FE /* Example_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4354A8727355A13004975FE /* Example_SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example_SwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4354A8927355A13004975FE /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
-		D4354A9F2735B07A004975FE /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Example_SwiftUIApp.swift; sourceTree = "<group>"; };
+		D4BCB296273C0670007851E5 /* Example_SwiftUI (iOS).entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Example_SwiftUI (iOS).entitlements"; sourceTree = "<group>"; };
+		D4BCB297273C090F007851E5 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 		D4354A7427355A10004975FE = {
 			isa = PBXGroup;
 			children = (
+				D4BCB296273C0670007851E5 /* Example_SwiftUI (iOS).entitlements */,
 				D4354A7927355A11004975FE /* Shared */,
 				D4354A8827355A13004975FE /* macOS */,
 				D4354A8227355A13004975FE /* Products */,
@@ -62,10 +64,10 @@
 		D4354A7927355A11004975FE /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D4BCB297273C090F007851E5 /* AppDelegate.swift */,
 				D4354AA227397B7E004975FE /* Example_SwiftUIApp.swift */,
 				D4354A7B27355A11004975FE /* ContentView.swift */,
 				D4354A7C27355A13004975FE /* Assets.xcassets */,
-				D4354A9F2735B07A004975FE /* Config.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -198,8 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BCB298273C090F007851E5 /* AppDelegate.swift in Sources */,
 				D4354A8C27355A13004975FE /* ContentView.swift in Sources */,
-				D4354AA02735B07A004975FE /* Config.swift in Sources */,
 				D4354AA327397B7E004975FE /* Example_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -208,8 +210,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4BCB299273C090F007851E5 /* AppDelegate.swift in Sources */,
 				D4354A8D27355A13004975FE /* ContentView.swift in Sources */,
-				D4354AA12735B07A004975FE /* Config.swift in Sources */,
 				D4354AA427397B7E004975FE /* Example_SwiftUIApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Example_SwiftUI (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JHV5RC82C3;
@@ -363,6 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "Example_SwiftUI (iOS).entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JHV5RC82C3;

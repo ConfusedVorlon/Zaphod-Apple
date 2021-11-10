@@ -25,7 +25,7 @@ class PreferenceSync {
 
         let dict = UserDefaults.standard.dictionaryRepresentation()
         dict.forEach { (key: String, value: Any) in
-            if key.hasPrefix(Preference.prefix) {
+            if let prefKey = ZPreference.Key(rawValue: key), prefKey.shouldSync {
                 NSUbiquitousKeyValueStore.default.set(value, forKey: key)
             }
         }
@@ -37,6 +37,7 @@ class PreferenceSync {
 
         let iCloudStore = NSUbiquitousKeyValueStore.default
         let dict = iCloudStore.dictionaryRepresentation
+        var newSyncRequired = false
 
         // prevent NSUserDefaultsDidChangeNotification from being posted while we update from iCloud
 
@@ -46,12 +47,19 @@ class PreferenceSync {
             object: nil)
 
         dict.forEach { (key: String, value: Any) in
-            if key.hasPrefix(Preference.prefix) {
-                UserDefaults.standard.set(value, forKey: key)
+            if let prefKey = ZPreference.Key(rawValue: key), prefKey.shouldSync {
+                let needsSync = ZPreference.synchronisePref(object: value, for: prefKey)
+                if needsSync {
+                    newSyncRequired = true
+                }
             }
         }
         
         UserDefaults.standard.synchronize()
+        
+        if newSyncRequired {
+            updateToiCloud(nil)
+        }
 
         // enable NSUserDefaultsDidChangeNotification notifications again
         NotificationCenter.default.addObserver(

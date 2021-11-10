@@ -8,7 +8,7 @@
 import Foundation
 
 class EmailTextFieldValidator {
-    func validate(input: String?) -> String? {
+    static func validate(input: String?) -> String? {
         guard let trimmedText = input?.trimmingCharacters(in: .whitespacesAndNewlines) else {
             return nil
         }

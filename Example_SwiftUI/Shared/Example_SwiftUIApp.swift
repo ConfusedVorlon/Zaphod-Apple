@@ -9,11 +9,12 @@ import SwiftUI
 
 @main
 struct Example_SwiftUIApp: App {
-    init() {
-        //ensure that Config.shared is called to initialise Zaphod
-        //you'll normally do this in appDidFinishLaunching
-        _ = Config.shared
-    }
+  
+#if os(iOS)
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+#elseif os(macOS)
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+#endif
     
     var body: some Scene {
         WindowGroup {

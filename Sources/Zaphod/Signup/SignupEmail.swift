@@ -26,23 +26,28 @@ public struct SignupEmailView: View {
                 .font(.headline)
                 .foregroundColor(.primary)
             
-            Text(text.body)
+            Text(text.emailBody)
                 .font(.body)
                 .foregroundColor(.secondary)
+                .frame(maxWidth:.infinity)
+                .multilineTextAlignment(.leading)
             
             if let from = text.from {
                 Text(from)
                     .font(.body)
                     .foregroundColor(.secondary)
+                    .frame(maxWidth:.infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
             }
             
             EnterEmailView(text:text,close:close)
             
-            Button(text.noButton) {
+            Button(text.emailNoButton) {
                 self.close()
             }
         }
         .padding()
+        .padding(.vertical)
         .background(Color.backgroundColor)
         .cornerRadius(10)
         .shadow(radius: 5)
@@ -66,6 +71,7 @@ struct EnterEmailView: View {
     @FocusState private var focusEmail:Bool
     
     @State private var email:String = ""
+    @State private var errorMessage:String?
     
     init(text:SignupText,close:@escaping ()->Void){
 
@@ -80,52 +86,53 @@ struct EnterEmailView: View {
     var body: some View {
         VStackIfCompact {
             
-            if #available(macOS 12.0,iOS 15.0, *) {
-                TextField("Your Email", text: $email)
-                    .disableAutocorrection(true)
-                    .padding(10)
-                    .cornerRadius(5)
-                    .border(.selection)
-                    .focused($focusEmail)
+            VStack(spacing:5) {
+                if #available(macOS 12.0,iOS 15.0, *) {
+                    TextField("Your Email", text: $email)
+                        .disableAutocorrection(true)
+                        .padding(10)
+                        .cornerRadius(5)
+                        .border(.selection)
+                        .focused($focusEmail)
+                }
+                else {
+                    TextField("Your Email", text: $email)
+                        .disableAutocorrection(true)
+                        .padding(10)
+                        .cornerRadius(5)
+                        .border(Color.gray)
+                }
+            
+                Text(errorMessage ?? "")
+                    .font(.footnote)
+                    .foregroundColor(.red)
+                    .padding(.bottom,10)
+                    .frame(height: errorMessage == nil ? 0 : nil)
             }
-            Button(text.yesButton){
-                self.close()
+
+            Button(text.emailYesButton){
+                submitEmail()
             }
             .backport.keyboardShortcutDefault()
         }
     }
+    
+    func submitEmail() {
+        do {
+            try Zaphod.shared.set(email: email)
+            withAnimation {
+                errorMessage = nil
+            }
+        } catch  {
+            withAnimation {
+                errorMessage = "Please check that your email is correct..."
+            }
+            return
+        }
+        
+        self.close()
+    }
 }
 
-@available(macOS 10.15.0,iOS 13.0, *)
-struct VStackIfCompact<Content: View>: View {
-    let content: Content
-    
-    init(@ViewBuilder content: () -> Content) {
-        self.content = content()
-    }
-    
-#if os(iOS)
-
-    @Environment(\.horizontalSizeClass) var horizontalSizeClass
-    var body: some View {
-        if horizontalSizeClass == .compact {
-            VStack {
-                content
-            }
-        }
-        else {
-            HStack {
-                content
-            }
-        }
-    }
-#elseif os(macOS)
-    var body: some View {
-        HStack {
-            content
-        }
-    }
-#endif
-}
 
 

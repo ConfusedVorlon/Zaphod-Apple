@@ -11,10 +11,10 @@ public struct SignupText {
     static let appPlaceholder="APPNAME"
     
     var emailHeading:String
-    var body:String
+    var emailBody:String
     var from:String?
-    var yesButton:String
-    var noButton:String
+    var emailYesButton:String
+    var emailNoButton:String
     
    public func from(_ newFrom:String) -> SignupText{
        var text = self
@@ -32,9 +32,9 @@ If you'd like to hear from me, then please enter your email below.
 Either way - Enjoy APPNAME 😀
 """
         return SignupText(emailHeading: "Thank you for Installing APPNAME",
-                          body:body,
-                          yesButton:"Keep Me Updated",
-                          noButton:"No Thanks, Skip This"
+                          emailBody:body,
+                          emailYesButton:"Keep Me Updated",
+                          emailNoButton:"No Thanks, Skip This"
         )
     }()
     
@@ -44,9 +44,9 @@ Either way - Enjoy APPNAME 😀
         }
         
         self.emailHeading = self.emailHeading.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
-        body = body.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
-        yesButton = yesButton.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
-        noButton = noButton.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
+        emailBody = emailBody.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
+        emailYesButton = emailYesButton.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
+        emailNoButton = emailNoButton.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
         if let from = from {
             self.from = from.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
         }

@@ -18,12 +18,19 @@ open class Zaphod{
     private static var config:ZaphodConfig?
     internal let config:ZaphodConfig
     
-    public let ui = ZaphodInfo()
-    
     /// Call setup with your ZConfig instance before accessing Zaphod.shared
     /// - Parameter config: Zaphod Configuration
     public class func setup(_ config:ZaphodConfig){
         Zaphod.config = config
+
+    }
+    
+    
+    /// Access info that can power UI related to Zaphod
+    public let ui = ZaphodInfo()
+    
+    public enum Fail: String,Error {
+        case emailNotValid
     }
     
     deinit {
@@ -33,6 +40,7 @@ open class Zaphod{
             object: nil)
     }
     
+    /// Don't use init directly - call setup() with your config, then use Zaphod.shared
     private init() {
         guard let config = Zaphod.config else {
             fatalError("Error - you must call Zaphod.setup(<config>) before accessing Zaphod.shared")
@@ -50,18 +58,19 @@ open class Zaphod{
             self.getAppInfo()
         }
         
+        setupForNotifications()
+        
         updateUI()
     }
 
     @objc private func prefsDidSync() {
-        print("Update from iCloud prefs")
         updateUI()
     }
     
     internal func updateUI() {
         DispatchQueue.main.async {
-            if let latestNews = Preference.appInfo?.latestNews  {
-                self.ui.hasUnreadNews = (latestNews > Preference.newsLastViewed)
+            if let latestNews = ZPreference.appInfo?.latestNews  {
+                self.ui.hasUnreadNews = (latestNews > ZPreference.newsLastViewed)
             }
             else {
                 self.ui.hasUnreadNews = false
@@ -78,7 +87,7 @@ open class Zaphod{
             result in
             switch result {
             case .success(let info):
-                Preference.appInfo = info.app
+                ZPreference.appInfo = info.app
 
                 self.updateUI()
             case .failure(let error):
@@ -89,8 +98,10 @@ open class Zaphod{
         
     }
     
+    /// Use when debugging to test your UI as the state changes
+    /// This deletes all stored state
     open func debugReset() {
-        Preference.debugReset()
+        ZPreference.debugReset()
         updateUI()
         
         DispatchQueue.background.asyncAfter(delay: 2) {
