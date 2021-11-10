@@ -11,7 +11,7 @@ import Zaphod
 struct ContentView: View {
     @Environment(\.openURL) var openURL
     
-    @State var showSignup: Double = 0
+    @State var showSignup: Bool = false
     
     var body: some View {
         VStack(spacing:20) {
@@ -24,7 +24,7 @@ struct ContentView: View {
             
             Button("Show Signup") {
                 withAnimation {
-                    self.showSignup = 1
+                    self.showSignup = true
                 }
             }
             
@@ -48,12 +48,9 @@ struct ContentView: View {
         .padding()
         .frame(maxWidth:.infinity)
         .overlay(
-            SignupWrapperView(text:SignupText.newFeaturesOtherApps.from("-Rob"), close: {
-                withAnimation {
-                    self.showSignup = 0
-                }
-            })
-                .opacity(showSignup)
+            SignupWrapperView(text:SignupText.newFeaturesOtherApps.from("-Rob"),
+                              show:$showSignup)
+                
             )
     }
 }
@@ -61,6 +58,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {  
     static var previews: some View {
 //        ContentView()
-        SignupWrapperView(text:SignupText.newFeaturesOtherApps.from("-Rob"), close: {})
+        SignupWrapperView(text:SignupText.newFeaturesOtherApps.from("-Rob"), show:.constant(true))
     }
 }

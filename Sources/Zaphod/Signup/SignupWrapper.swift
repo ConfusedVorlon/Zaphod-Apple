@@ -10,20 +10,18 @@ import SwiftUI
 @available(macOS 10.15.0,iOS 13.0, *)
 public struct SignupWrapperView: View {
     var text:SignupText
-    var close:()->Void
     var requests:[Request] = [.email,.notification]
     @State var currentRequest:Request
-    
+    @Binding var show:Bool
     
     enum Request {
         case email
         case notification
     }
     
-    
-    public init(text:SignupText,close:@escaping ()->Void){
+    public init(text:SignupText,show:Binding<Bool>){
         self.text = text
-        self.close = close
+        self._show = show
         guard let firstRequest = requests.first else {
             fatalError("You have to show at least one request")
         }
@@ -31,6 +29,7 @@ public struct SignupWrapperView: View {
     }
     
     public var body: some View {
+        if show {
             VStack {
                 Spacer()
                 
@@ -50,17 +49,23 @@ public struct SignupWrapperView: View {
                 Spacer()
             }
             .backport.vibrantBackground()
+            .transition(.move(edge:.bottom))
+        }
+        else {
+            EmptyView()
+        }
+
     }
     
     func closePage() {
-        if let currentIndex = requests.firstIndex(of: currentRequest),
-           (currentIndex + 1) < requests.count {
-            withAnimation {
+        withAnimation {
+            if let currentIndex = requests.firstIndex(of: currentRequest),
+               (currentIndex + 1) < requests.count {
                 currentRequest = requests[currentIndex + 1]
             }
-        }
-        else {
-            close()
+            else {
+                show = false
+            }
         }
     }
 }
@@ -68,7 +73,7 @@ public struct SignupWrapperView: View {
 @available(macOS 10.15.0,iOS 13.0, *)
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        SignupWrapperView(text:SignupText.newFeaturesOtherApps.from("-Rob"), close:{})
+        SignupWrapperView(text:SignupText.newFeaturesOtherApps.from("-Rob"), show:.constant(true))
     }
 }
 
