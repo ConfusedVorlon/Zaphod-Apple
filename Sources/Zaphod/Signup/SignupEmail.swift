@@ -32,7 +32,7 @@ public struct SignupEmailView: View {
                 .frame(maxWidth:.infinity)
                 .multilineTextAlignment(.leading)
             
-            if let from = text.from {
+            if let from = text.emailFrom {
                 Text(from)
                     .font(.body)
                     .foregroundColor(.secondary)

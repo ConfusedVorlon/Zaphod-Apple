@@ -28,6 +28,25 @@ extension Zaphod {
         print("setting device token to: \(notificationToken)")
     }
     
+    public func requestNotificationPermission(completion:@escaping()->Void) {
+        if #available(macOS 10.14,iOS 10.0, *) {
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: Zaphod.shared.config.notificationPermissions) { granted, error in
+                
+                if let error = error {
+                    print("error requesting notification permission: \(error)")
+                }
+                
+                ZPreference.hasNotificationPermission = granted
+                completion()
+            }
+        } else {
+            completion()
+            //Notifications not supported pre UNUserNotificationCenter
+        }
+
+    }
+    
     internal func setupForNotifications() {
         if #available(macOS 10.14,iOS 10.0, *) {
 #if os(iOS)

@@ -6,18 +6,36 @@
 //
 
 import Foundation
+import UserNotifications
 
 /// Configuration struct for Zaphod
-public struct ZaphodConfig {
+public class ZaphodConfig {
 
     /// Get your token from https://Zaphod.app
     let token:String
+    
+    /// By default, this is calculated from your bundle id - but you can use your own if you like
     let identifier:String
-    let checkForUpdates:Bool
+    
+    
+    /// The permissions requested when asking to display notifications
+    /// This is implemented as a separate property to allow suppoft for earlier macOS versions
+    /// If you don't want the defaults, then change your config before calling Zaphod.setup
+    @available(iOS 10.0,macOS 10.14, *)
+    var notificationPermissions:UNAuthorizationOptions {
+        get {
+            return (_notificationPermissions as? UNAuthorizationOptions) ?? [UNAuthorizationOptions.alert,UNAuthorizationOptions.badge]
+        }
+        set {
+            _notificationPermissions = newValue
+        }
+    }
+    private var _notificationPermissions:Any?
 
-    public init(token: String, identifier newIdentifier:String? = nil ,checkForUpdates: Bool = true) {
+
+    public init(token: String,
+                identifier newIdentifier:String? = nil ) {
         self.token = token
-        self.checkForUpdates = checkForUpdates
         if let newIdentifier = newIdentifier {
             self.identifier = ZaphodConfig.sanitise(newIdentifier)
         }

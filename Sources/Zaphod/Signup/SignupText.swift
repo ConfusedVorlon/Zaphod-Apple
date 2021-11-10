@@ -7,36 +7,68 @@
 
 import Foundation
 
+/// Strings to show when using the signup UI
 public struct SignupText {
+
+    
     static let appPlaceholder="APPNAME"
     
     var emailHeading:String
     var emailBody:String
-    var from:String?
+    var emailFrom:String?
     var emailYesButton:String
     var emailNoButton:String
-    
-   public func from(_ newFrom:String) -> SignupText{
-       var text = self
-       text.from = newFrom
-       return text
-    }
+    var notificationHeading:String
+    var notificationBody:String
+    var notificationYesButton:String
+    var notificationNoButton:String
     
 
+    /// Example text - you can use this directly if you like!
     public static let newFeaturesOtherApps:SignupText = {
-        let body = """
+        let emailBody = """
 I'd love to let you know when I release new features and other apps.
 
 If you'd like to hear from me, then please enter your email below.
 
 Either way - Enjoy APPNAME 😀
 """
+        let notificationBody = """
+Can I send you notifications about updates and news?
+"""
+        
         return SignupText(emailHeading: "Thank you for Installing APPNAME",
-                          emailBody:body,
+                          emailBody:emailBody,
                           emailYesButton:"Keep Me Updated",
-                          emailNoButton:"No Thanks, Skip This"
+                          emailNoButton:"No Thanks, Skip This",
+                          notificationHeading: "Update Notifications?",
+                          notificationBody: notificationBody,
+                          notificationYesButton: "Sounds Great!",
+                          notificationNoButton: "No Thanks"
         )
     }()
+    
+    public init(emailHeading: String, emailBody: String, emailFrom: String? = nil, emailYesButton: String, emailNoButton: String, notificationHeading: String, notificationBody: String, notificationYesButton: String, notificationNoButton: String) {
+        self.emailHeading = emailHeading
+        self.emailBody = emailBody
+        self.emailFrom = emailFrom
+        self.emailYesButton = emailYesButton
+        self.emailNoButton = emailNoButton
+        self.notificationHeading = notificationHeading
+        self.notificationBody = notificationBody
+        self.notificationYesButton = notificationYesButton
+        self.notificationNoButton = notificationNoButton
+    }
+    
+    /// Set the 'from' string easily on the default
+    /// - Parameter newFrom: new string
+    /// - Returns: updated SignupText
+    public func from(_ newFrom:String) -> SignupText{
+        var text = self
+        text.emailFrom = newFrom
+        return text
+     }
+     
     
     internal mutating func doReplacements() {
         guard let appName = Bundle.main[.name] as? String else {
@@ -47,8 +79,8 @@ Either way - Enjoy APPNAME 😀
         emailBody = emailBody.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
         emailYesButton = emailYesButton.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
         emailNoButton = emailNoButton.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
-        if let from = from {
-            self.from = from.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
+        if let from = emailFrom {
+            self.emailFrom = from.replacingOccurrences(of: SignupText.appPlaceholder, with: appName)
         }
     }
     

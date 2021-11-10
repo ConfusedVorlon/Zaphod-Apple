@@ -22,25 +22,24 @@ public struct SignupNotificationView: View {
 
     public var body: some View {
         VStack(spacing:20) {
-            Text("Wanna Notification??")
+            Text(text.notificationHeading)
                 .font(.headline)
                 .foregroundColor(.primary)
             
-            Text(text.emailBody)
+            Text(text.notificationBody)
                 .font(.body)
                 .foregroundColor(.secondary)
                 .frame(maxWidth:.infinity)
                 .multilineTextAlignment(.leading)
-            
-            if let from = text.from {
-                Text(from)
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth:.infinity, alignment: .leading)
-                    .multilineTextAlignment(.leading)
-            }
 
-            Button(text.emailNoButton) {
+            Button(text.notificationYesButton) {
+                Zaphod.shared.requestNotificationPermission {
+                    self.close()
+                }
+            }
+            .backport.keyboardShortcutDefault()
+            
+            Button(text.notificationNoButton) {
                 self.close()
             }
         }
