@@ -21,5 +21,6 @@ extension Zaphod {
     
     public func markNewsAsSeen() {
         ZPreference.newsLastViewed = Date()
+        updateUI()
     }
 }
