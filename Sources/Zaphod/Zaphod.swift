@@ -88,10 +88,10 @@ open class Zaphod{
             switch result {
             case .success(let info):
                 ZPreference.appInfo = info.app
-
+                print("Zaphod: Updated from server")
                 self.updateUI()
             case .failure(let error):
-                print("Error performing network request \(error)")
+                print("Zaphod: Error performing network request \(error)")
             }
         }
 

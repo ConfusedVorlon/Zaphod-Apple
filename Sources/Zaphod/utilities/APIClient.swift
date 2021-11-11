@@ -53,9 +53,9 @@ class APIRequest {
 
 enum APIError: Error {
     case invalidURL
-    case requestFailed
+    case requestFailed(networkError:Error?)
     case decodingFailure
-    case statusNotOK
+    case statusNotOK(code:Int)
     case noDataInResponse
 }
 
@@ -68,11 +68,15 @@ struct APIClient<ResponseType> where ResponseType:Decodable {
         
         let task = session.dataTask(with: request.urlRequest) { (data, response, error) in
             guard let httpResponse = response as? HTTPURLResponse else {
-                completion(.failure(.requestFailed));
+                completion(.failure(.requestFailed(networkError: error)));
                 return
             }
-            if httpResponse.statusCode != 200 {
-                completion(.failure(.statusNotOK));
+            let statusCode = httpResponse.statusCode
+            if statusCode != 200 {
+                if statusCode == 401 {
+                    print("Zaphod: Access denied - Please check your Zaphod Token is correct")
+                }
+                completion(.failure(.statusNotOK(code: statusCode)));
                 return
             }
             guard let data = data else {
