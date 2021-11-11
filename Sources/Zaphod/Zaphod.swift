@@ -79,7 +79,7 @@ open class Zaphod{
     }
     
     private func getAppInfo() {
-        let url = URL(string: "http://127.0.0.1:3000/api/z1/apps")!.appendingPathComponent(config.identifier)
+        let url = URL(string: "https://Zaphod.app/api/z1/apps")!.appendingPathComponent(config.identifier)
         let request = APIRequest(method: .get, url: url)
         request.headers = [HTTPHeader(field: "Authorization", value: config.token)]
         
