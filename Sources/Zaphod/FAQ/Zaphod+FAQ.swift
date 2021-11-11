@@ -9,7 +9,7 @@ import Foundation
 
 extension Zaphod {
     public var faqURL:URL {
-        if let url = ZPreference.appInfo?.faq_url {
+        if let url = ZPreference.appInfo?.faqUrl {
             return url
         }
 

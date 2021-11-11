@@ -80,7 +80,6 @@ struct APIClient<ResponseType> where ResponseType:Decodable {
                 return
             }
 
-            
             guard let response:ResponseType = data.decode() else {
                 completion(.failure(.decodingFailure))
                 return

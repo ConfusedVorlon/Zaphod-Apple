@@ -9,7 +9,7 @@ import Foundation
 
 extension Zaphod {
     public var whatsNewURL:URL {
-        if let url = ZPreference.appInfo?.news_url {
+        if let url = ZPreference.appInfo?.newsUrl {
             return url
         }
 

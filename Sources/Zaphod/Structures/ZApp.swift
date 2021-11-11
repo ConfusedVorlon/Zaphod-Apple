@@ -12,15 +12,17 @@ struct ZApp:ZJson {
     let identifier:String
     let slug:String
     let latestNews:Date
-    let news_url:URL
-    let faq_url:URL
+    let newsUrl:URL
+    let faqUrl:URL
+    let faqCount:Int
     
     enum CodingKeys: String, CodingKey {
         case name
         case identifier
         case slug
         case latestNews="latest_news"
-        case news_url
-        case faq_url
+        case newsUrl="news_url"
+        case faqUrl="faq_url"
+        case faqCount="faq_count"
     }
 }
