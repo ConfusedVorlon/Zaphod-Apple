@@ -9,16 +9,22 @@ import SwiftUI
 
 
 @available(macOS 10.15.0,iOS 13.0, *)
-public struct WhatsNewButton: View {
+public struct WhatsNewButton<Label>: View where Label : View {
     @ObservedObject private var info:ZaphodInfo
     public var newColor:Color
     var action:((URL)->Void)?
+    var label:Label?
     
-    public init(info:ZaphodInfo = Zaphod.shared.ui, newColor:Color = .red, action:((URL)->Void)?) {
+    public init(info:ZaphodInfo = Zaphod.shared.ui,
+                newColor:Color = .red,
+                action:((URL)->Void)?,
+                @ViewBuilder label: () -> Label) {
         self.info = info
         self.newColor = newColor
         self.action = action
+        self.label = label()
     }
+    
     
     private var hasUnread:Bool {
         return info.hasUnreadNews
@@ -35,7 +41,7 @@ public struct WhatsNewButton: View {
                     .shadow(color: .red, radius: hasUnread ? 3 : 0, x: 0, y: 0)
                     .frame(width: hasUnread ? nil : 0)
                              
-                Text("What's New")
+                label
             }
             .animation(.easeIn(duration: 0.5), value: hasUnread)
             
@@ -52,10 +58,29 @@ public struct WhatsNewButton: View {
     }
 }
 
+@available(macOS 10.15.0,iOS 13.0, *)
+extension WhatsNewButton where Label == Text {
+    public init(info:ZaphodInfo = Zaphod.shared.ui,
+                newColor:Color = .red,
+                title:LocalizedStringKey = "What's New",
+                action:((URL)->Void)?) {
+        self.info = info
+        self.newColor = newColor
+        self.action = action
+        self.label = Text(title)
+    }
+}
+
 
 @available(macOS 10.15.0,iOS 13.0, *)
 struct WhatsNewButton_Previews: PreviewProvider {
     static var previews: some View {
+        WhatsNewButton(action:{_ in}) {
+            Text("What exactly is new?")
+        }
+        
         WhatsNewButton(){_ in}
+        
+        WhatsNewButton(title:"Shortcut"){_ in}
     }
 }
