@@ -50,6 +50,7 @@ public struct WhatsNewButton<Label>: View where Label : View {
     
     private func clicked() {
         if let action = action {
+            Zaphod.shared.markNewsAsSeen()
             action(Zaphod.shared.whatsNewURL)
         }
         else {
