@@ -18,8 +18,8 @@ struct ContentView: View {
             Text("Zaphod SwiftUI Demo")
                 .font(.headline)
             
-            WhatsNewButton(){
-                openURL(Zaphod.shared.whatsNewURL)
+            WhatsNewButton(){ url in
+                openURL(url)
             }
             
             Button("Show Signup") {

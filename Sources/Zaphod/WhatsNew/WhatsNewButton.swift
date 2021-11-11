@@ -12,9 +12,9 @@ import SwiftUI
 public struct WhatsNewButton: View {
     @ObservedObject private var info:ZaphodInfo
     public var newColor:Color
-    var action:(()->Void)?
+    var action:((URL)->Void)?
     
-    public init(info:ZaphodInfo = Zaphod.shared.ui, newColor:Color = .red, action:(()->Void)?) {
+    public init(info:ZaphodInfo = Zaphod.shared.ui, newColor:Color = .red, action:((URL)->Void)?) {
         self.info = info
         self.newColor = newColor
         self.action = action
@@ -44,7 +44,7 @@ public struct WhatsNewButton: View {
     
     private func clicked() {
         if let action = action {
-            action()
+            action(Zaphod.shared.whatsNewURL)
         }
         else {
             print("Please assign an action to the What's new button")
@@ -56,6 +56,6 @@ public struct WhatsNewButton: View {
 @available(macOS 10.15.0,iOS 13.0, *)
 struct WhatsNewButton_Previews: PreviewProvider {
     static var previews: some View {
-        WhatsNewButton(){}
+        WhatsNewButton(){_ in}
     }
 }
