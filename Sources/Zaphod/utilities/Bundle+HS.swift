@@ -11,7 +11,7 @@ import Foundation
 
 /// Convenience accessors for Bundle
 /// Bundle.main[.version]
-public extension Bundle {
+extension Bundle {
     
     /// Keys for common properties
     enum Key: String {

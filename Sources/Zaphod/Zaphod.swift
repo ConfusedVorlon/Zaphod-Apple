@@ -22,7 +22,7 @@ open class Zaphod{
     /// - Parameter config: Zaphod Configuration
     public class func setup(_ config:ZaphodConfig){
         Zaphod.config = config
-
+        _ = Zaphod.shared
     }
     
     

@@ -43,6 +43,5 @@ extension AppDelegate {
     func configureZaphod() {
         let zaphodConfig = ZaphodConfig(token: "k2uytceBKkt7RbgFFU3c2iAJ")
         Zaphod.setup(zaphodConfig)
-        _ = Zaphod.shared
     }
 }

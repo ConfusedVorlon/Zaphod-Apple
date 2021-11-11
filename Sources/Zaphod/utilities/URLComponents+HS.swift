@@ -8,7 +8,7 @@
 import Foundation
 
 
-public extension Array where Element == URLQueryItem {
+extension Array where Element == URLQueryItem {
     @available(*, deprecated,message: "Use subscript directly on URLComponents")
     subscript(index:String) -> String? {
         
@@ -22,7 +22,7 @@ public extension Array where Element == URLQueryItem {
     }
 }
 
-public extension URLComponents {
+extension URLComponents {
     
     //Allows myURLComponent["myParam"] = "newValue"
     subscript(index:String) -> String? {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-internal class ZPreference {
+public class ZPreference {
     static let prefix = "Zaphod_"
     
     internal enum Key:String, CaseIterable {
@@ -70,7 +70,7 @@ internal class ZPreference {
         
     }
     
-    static var newsLastViewed:Date {
+    public static var newsLastViewed:Date {
         get {
             return pref(for: .newsLastViewed) as? Date ?? Date.distantPast
         }
@@ -80,7 +80,7 @@ internal class ZPreference {
     }
     
     
-    static var appInfo:ZApp? {
+    public static var appInfo:ZApp? {
         get {
             guard let data = pref(for: .appInfo) as? Data else {
                 return nil
@@ -102,7 +102,7 @@ internal class ZPreference {
         }
     }
     
-    static var hasRegisteredEmail:Bool {
+    public static var hasRegisteredEmail:Bool {
         get {
             return pref(for: .hasRegisteredEmail) as? Bool ?? false
         }
@@ -111,7 +111,7 @@ internal class ZPreference {
         }
     }
     
-    static var hasNotificationPermission:Bool {
+    public static var hasNotificationPermission:Bool {
         get {
             return pref(for: .hasNotificationPermission) as? Bool ?? false
         }
@@ -120,7 +120,7 @@ internal class ZPreference {
         }
     }
     
-    static func debugReset() {
+    public static func debugReset() {
         for key in Key.allCases {
             setPref(nil, for: key)
         }
