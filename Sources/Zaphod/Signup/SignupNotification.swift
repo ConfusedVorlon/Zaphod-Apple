@@ -42,6 +42,7 @@ public struct SignupNotificationView: View {
             Button(text.notificationNoButton) {
                 self.close()
             }
+            .font(.subheadline)
         }
         .padding()
         .padding(.vertical)

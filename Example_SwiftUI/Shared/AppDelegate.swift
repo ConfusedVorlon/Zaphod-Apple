@@ -41,7 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate {
     func configureZaphod() {
-        let zaphodConfig = ZaphodConfig(token: "HzJgy3Hp2Wckqk1aDsfZgQQA")
+        let zaphodConfig = ZaphodConfig(token: "k2uytceBKkt7RbgFFU3c2iAJ")
         Zaphod.setup(zaphodConfig)
     }
 }

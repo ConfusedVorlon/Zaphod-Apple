@@ -25,6 +25,16 @@ public struct WhatsNewButton<Label>: View where Label : View {
         self.label = label()
     }
     
+    public init(info:ZaphodInfo = Zaphod.shared.ui,
+                newColor:Color = .red,
+                title:LocalizedStringKey = "What's New",
+                action:((URL)->Void)?) where Label == Text {
+        self.info = info
+        self.newColor = newColor
+        self.action = action
+        self.label = Text(title)
+    }
+    
     
     private var hasUnread:Bool {
         return info.hasUnreadNews
@@ -56,19 +66,6 @@ public struct WhatsNewButton<Label>: View where Label : View {
         else {
             print("Please assign an action to the What's new button")
         }
-    }
-}
-
-@available(macOS 10.15.0,iOS 13.0, *)
-extension WhatsNewButton where Label == Text {
-    public init(info:ZaphodInfo = Zaphod.shared.ui,
-                newColor:Color = .red,
-                title:LocalizedStringKey = "What's New",
-                action:((URL)->Void)?) {
-        self.info = info
-        self.newColor = newColor
-        self.action = action
-        self.label = Text(title)
     }
 }
 

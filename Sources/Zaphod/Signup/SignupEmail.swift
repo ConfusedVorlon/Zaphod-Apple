@@ -21,30 +21,34 @@ public struct SignupEmailView: View {
     }
 
     public var body: some View {
-        VStack(spacing:20) {
+        VStack(alignment:.leading,spacing:20) {
             Text(text.emailHeading)
                 .font(.headline)
+                .frame(maxWidth:.infinity)
+                .multilineTextAlignment(.center)
                 .foregroundColor(.primary)
             
             Text(text.emailBody)
                 .font(.body)
                 .foregroundColor(.secondary)
-                .frame(maxWidth:.infinity)
                 .multilineTextAlignment(.leading)
-            
+
             if let from = text.emailFrom {
                 Text(from)
                     .font(.body)
                     .foregroundColor(.secondary)
-                    .frame(maxWidth:.infinity, alignment: .leading)
                     .multilineTextAlignment(.leading)
             }
             
             EnterEmailView(text:text,close:close)
             
-            Button(text.emailNoButton) {
-                self.close()
+            CenteredIfCompact {
+                Button(text.emailNoButton) {
+                    self.close()
+                }
+                .font(.subheadline)
             }
+            
         }
         .padding()
         .padding(.vertical)

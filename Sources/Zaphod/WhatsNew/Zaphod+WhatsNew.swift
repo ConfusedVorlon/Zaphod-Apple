@@ -13,7 +13,8 @@ extension Zaphod {
             return url
         }
 
-        var urlC = URLComponents(string: "https://zaphod.app/a/na/news_items")!
+        var urlC = URLComponents(url: Zaphod.serverURL, resolvingAgainstBaseURL: false)!
+        urlC.path = "/a/na/news_items"
         urlC["identifier"]=config.identifier
         
         return urlC.url!

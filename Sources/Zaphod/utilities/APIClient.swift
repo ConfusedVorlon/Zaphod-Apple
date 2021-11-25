@@ -26,7 +26,7 @@ struct HTTPHeader {
 class APIRequest {
     let url:URL
     let method:HTTPMethod
-    var headers: [HTTPHeader]?
+    private var headers: [HTTPHeader] = []
     var body: Data?
 
     init(method: HTTPMethod, url: URL) {
@@ -38,6 +38,16 @@ class APIRequest {
         self.method = method
         self.url = url
         self.body = try JSONEncoder().encode(body)
+        
+        add(header: HTTPHeader(field: "Content-type", value: "application/json"))
+    }
+    
+    func add(header:HTTPHeader){
+        headers.append(header)
+    }
+    
+    func authorise(token:String) {
+        add(header: HTTPHeader(field: "Authorization", value: token))
     }
     
     fileprivate var urlRequest:URLRequest {
@@ -45,7 +55,7 @@ class APIRequest {
         urlRequest.httpMethod = method.rawValue
         urlRequest.httpBody = body
 
-        headers?.forEach { urlRequest.addValue($0.value, forHTTPHeaderField: $0.field) }
+        headers.forEach { urlRequest.addValue($0.value, forHTTPHeaderField: $0.field) }
         
         return urlRequest
     }

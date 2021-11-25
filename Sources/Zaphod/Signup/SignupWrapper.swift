@@ -30,7 +30,7 @@ public struct SignupWrapperView: View {
     
     public var body: some View {
         if show {
-            VStack {
+            VStack() {
                 Spacer()
                 
                 
@@ -50,6 +50,12 @@ public struct SignupWrapperView: View {
             }
             .backport.vibrantBackground()
             .transition(.move(edge:.bottom))
+            .onAppear {
+                if let firstRequest = requests.first {
+                    currentRequest = firstRequest
+                }
+                
+            }
         }
         else {
             EmptyView()
@@ -70,11 +76,6 @@ public struct SignupWrapperView: View {
     }
 }
 
-@available(macOS 10.15.0,iOS 13.0, *)
-struct SwiftUIView_Previews: PreviewProvider {
-    static var previews: some View {
-        SignupWrapperView(text:SignupText.newFeaturesOtherApps.from("-Rob"), show:.constant(true))
-    }
-}
+
 
 

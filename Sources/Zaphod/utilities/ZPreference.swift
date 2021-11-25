@@ -16,10 +16,13 @@ public class ZPreference {
         case serverId = "Zaphod_serverID"
         case hasRegisteredEmail = "Zaphod_hasRegisteredEmail"
         case hasNotificationPermission = "Zaphod_hasNotificationPermission"
+        case signupInfo = "Zaphod_signupInfo"
+        case signupInfoNeedsSync = "Zaphod_signupInfoNeedsSync"
+        
         
         var shouldSync:Bool {
             switch self {
-            case .hasNotificationPermission:
+            case .hasNotificationPermission,.signupInfo,.signupInfoNeedsSync:
                 return false
             default:
                 return true
@@ -44,6 +47,7 @@ public class ZPreference {
             setPref(object, for: key)
             return false
             
+        //once this is set to true on any device - it stays true
         case .hasRegisteredEmail:
             guard let incomingValue = object as? Bool else {
                 print("hasRegisteredEmail should be a bool...")
@@ -59,10 +63,7 @@ public class ZPreference {
             else {
                 return false
             }
-            
-            
-            
-        case .hasNotificationPermission:
+        case .hasNotificationPermission,.signupInfo,.signupInfoNeedsSync:
             assert(false,"this shouldn't sync!")
             return false
         }
@@ -117,6 +118,28 @@ public class ZPreference {
         }
         set {
             setPref(newValue, for: .hasNotificationPermission)
+        }
+    }
+    
+    internal static var signupInfo:ZSignup {
+        get {
+            guard let data = pref(for: .signupInfo) as? Data else {
+                return ZSignup()
+            }
+            
+            return data.decode() ?? ZSignup()
+        }
+        set {
+            setPref(newValue.jsonData, for: .signupInfo)
+        }
+    }
+    
+    public static var signupInfoNeedsSync:Bool {
+        get {
+            return pref(for: .signupInfoNeedsSync) as? Bool ?? false
+        }
+        set {
+            setPref(newValue, for: .signupInfoNeedsSync)
         }
     }
     

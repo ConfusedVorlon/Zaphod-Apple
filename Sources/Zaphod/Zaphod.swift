@@ -24,10 +24,26 @@ open class Zaphod{
         Zaphod.config = config
         _ = Zaphod.shared
     }
+
+    //static let serverURL = URL(string:"https://zaphod.app")!
+    static let serverURL = URL(string:"http://localhost:3000")!
+    var appsURL:URL {
+        return Zaphod.serverURL
+            .appendingPathComponent("api/z1/apps")
+            .appendingPathComponent(config.identifier)
+    }
     
     
     /// Access info that can power UI related to Zaphod
     public let ui = ZaphodInfo()
+    
+    internal var signupInfoNeedsSync = false {
+        didSet {
+            if signupInfoNeedsSync {
+                scheduleSignupInfoSync()
+            }
+        }
+    }
     
     public enum Fail: String,Error {
         case emailNotValid
@@ -61,6 +77,10 @@ open class Zaphod{
         setupForNotifications()
         
         updateUI()
+        
+        if ZPreference.signupInfoNeedsSync {
+            scheduleSignupInfoSync()
+        }
     }
 
     @objc private func prefsDidSync() {
@@ -79,9 +99,9 @@ open class Zaphod{
     }
     
     private func getAppInfo() {
-        let url = URL(string: "https://Zaphod.app/api/z1/apps")!.appendingPathComponent(config.identifier)
-        let request = APIRequest(method: .get, url: url)
-        request.headers = [HTTPHeader(field: "Authorization", value: config.token)]
+
+        let request = APIRequest(method: .get, url: appsURL)
+        request.authorise(token: config.token)
         
         APIClient<ZAppInfo>().fetch(request) {
             result in
