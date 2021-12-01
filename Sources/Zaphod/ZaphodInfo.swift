@@ -16,8 +16,8 @@ import Combine
 /// Either include directly in SwiftUI code - or use combine to watch for changes
 /// If you're on an older version - then you can watch for changes via the ZaphodInfo.Notif.changed notification
 public class ZaphodInfo {
-    struct Notif {
-        static let changed = NSNotification.Name("ZaphodInfoChangedNotification")
+    public struct Notif {
+        public static let changed = NSNotification.Name("ZaphodInfoChangedNotification")
     }
     
     /// Whether there is news more recent than the last time Zaphod.markNewsAsSeen() was called
