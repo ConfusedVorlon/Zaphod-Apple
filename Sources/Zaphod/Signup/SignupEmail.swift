@@ -52,10 +52,14 @@ public struct SignupEmailView: View {
         }
         .padding()
         .padding(.vertical)
-        .background(Color.backgroundColor)
+        .background(
+            LinearGradient(gradient: Gradient(colors: text.backgroundColors), startPoint: .topLeading, endPoint: .bottomTrailing)
+        )
         .cornerRadius(10)
         .shadow(radius: 5)
     }
+    
+
 }
 
 @available(macOS 10.15.0,iOS 13.0, *)
@@ -119,7 +123,10 @@ struct EnterEmailView: View {
             }
             .backport.keyboardShortcutDefault()
         }
+
     }
+    
+
     
     func submitEmail() {
         do {

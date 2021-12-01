@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import SwiftUI
 
 /// Strings to show when using the signup UI
+@available(macOS 10.15.0,iOS 13.0, *)
 public struct SignupText {
 
     
@@ -22,6 +24,9 @@ public struct SignupText {
     var notificationBody:String
     var notificationYesButton:String
     var notificationNoButton:String
+    
+    var backgroundColors:[Color] = [Color(red:0.93, green:0.91, blue:0.90),
+                                  Color(red:1, green:1, blue:1)]
     
 
     /// Example text - you can use this directly if you like!
