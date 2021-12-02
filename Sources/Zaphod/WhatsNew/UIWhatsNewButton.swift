@@ -75,6 +75,8 @@ public class UIWhatsNewButton:UIButton {
     /// if there are no other targets set - then the button will attempt to open the what's new page in safari
     /// presenting over the current viewController
     open func defaultAction() {
+        Zaphod.shared.markNewsAsSeen()
+        
         //just us!
         guard allTargets.count == 1 else {
             return
