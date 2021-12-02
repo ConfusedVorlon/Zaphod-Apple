@@ -94,9 +94,13 @@ open class Zaphod{
         updateUI()
     }
     
+    public var latestNews:Date? {
+        return ZPreference.appInfo?.latestNews
+    }
+    
     internal func updateUI() {
         DispatchQueue.main.async {
-            if let latestNews = ZPreference.appInfo?.latestNews  {
+            if let latestNews = self.latestNews  {
                 self.ui.hasUnreadNews = (latestNews > ZPreference.newsLastViewed)
             }
             else {
