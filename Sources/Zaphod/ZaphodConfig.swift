@@ -16,7 +16,9 @@ public class ZaphodConfig {
     
     /// By default, this is calculated from your bundle id - but you can use your own if you like
     let identifier:String
-    
+
+    /// Debugging - use local server
+    let localhost:Bool = false
     
     /// The permissions requested when asking to display notifications
     /// This is implemented as a separate property to allow suppoft for earlier macOS versions
@@ -31,7 +33,6 @@ public class ZaphodConfig {
         }
     }
     private var _notificationPermissions:Any?
-
 
     public init(token: String,
                 identifier newIdentifier:String? = nil ) {

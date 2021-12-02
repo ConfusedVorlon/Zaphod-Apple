@@ -25,8 +25,15 @@ open class Zaphod{
         _ = Zaphod.shared
     }
 
-    //static let serverURL = URL(string:"https://zaphod.app")!
-    static let serverURL = URL(string:"http://localhost:3000")!
+    static let serverURL:URL = {
+        if Zaphod.shared.config.localhost {
+            return URL(string:"http://localhost:3000")!
+        }
+        else {
+            return URL(string:"https://zaphod.app")!
+        }
+    }()
+
     var appsURL:URL {
         return Zaphod.serverURL
             .appendingPathComponent("api/z1/apps")
