@@ -18,7 +18,7 @@ public class ZaphodConfig {
     let identifier:String
 
     /// Debugging - use local server
-    let localhost:Bool = false
+    let localhost:Bool
     
     /// The permissions requested when asking to display notifications
     /// This is implemented as a separate property to allow suppoft for earlier macOS versions
@@ -35,8 +35,10 @@ public class ZaphodConfig {
     private var _notificationPermissions:Any?
 
     public init(token: String,
-                identifier newIdentifier:String? = nil ) {
+                identifier newIdentifier:String? = nil,
+                localhost:Bool = false) {
         self.token = token
+        self.localhost = localhost
         if let newIdentifier = newIdentifier {
             self.identifier = ZaphodConfig.sanitise(newIdentifier)
         }
