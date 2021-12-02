@@ -32,6 +32,7 @@ extension Zaphod {
         
         guard let string = String(data: notificationToken, encoding: .utf8) else {
             assert(false,"notification token doesn't want to be a string...")
+            return
         }
         print("setting device token to: \(notificationToken)")
         updateSubscribeInfo(applePush: string)
