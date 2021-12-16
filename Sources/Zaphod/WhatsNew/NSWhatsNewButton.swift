@@ -8,8 +8,8 @@
 
 import Foundation
 
-
-#if !os(watchOS) && !os(tvOS) && canImport(AppKit)
+//absurdly, macCatalyst _can_ import AppKit - but then falls over
+#if !os(watchOS) && !os(tvOS) && canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 
 import AppKit
