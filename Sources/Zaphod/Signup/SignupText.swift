@@ -51,7 +51,15 @@ Can I send you notifications about updates and news?
         )
     }()
 
-    public init(emailHeading: String, emailBody: String, emailFrom: String? = nil, emailYesButton: String, emailNoButton: String, notificationHeading: String, notificationBody: String, notificationYesButton: String, notificationNoButton: String) {
+    public init(emailHeading: String,
+                emailBody: String,
+                emailFrom: String? = nil,
+                emailYesButton: String,
+                emailNoButton: String,
+                notificationHeading: String,
+                notificationBody: String,
+                notificationYesButton: String,
+                notificationNoButton: String) {
         self.emailHeading = emailHeading
         self.emailBody = emailBody
         self.emailFrom = emailFrom

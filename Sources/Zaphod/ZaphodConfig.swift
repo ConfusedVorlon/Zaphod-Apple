@@ -26,7 +26,7 @@ public class ZaphodConfig {
     @available(iOS 10.0, macOS 10.14, *)
     var notificationPermissions: UNAuthorizationOptions {
         get {
-            return (_notificationPermissions as? UNAuthorizationOptions) ?? [UNAuthorizationOptions.alert, UNAuthorizationOptions.badge]
+            return (_notificationPermissions as? UNAuthorizationOptions) ?? [.alert, .badge]
         }
         set {
             _notificationPermissions = newValue

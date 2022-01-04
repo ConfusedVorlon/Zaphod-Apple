@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Example_SwiftUIApp: App {
+struct ExampleSwiftUIApp: App {
 
 #if os(iOS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate

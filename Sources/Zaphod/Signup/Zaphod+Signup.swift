@@ -63,7 +63,7 @@ extension Zaphod {
     ///   - applePush: push token for this device
     ///   - doNotSync: allow server id to be updated by the server without a server sync
     internal func updateSubscribeInfo(serverId: UUID? = nil,
-                                    email: String? = nil,
+                                      email: String? = nil,
                                       applePush: String? = nil,
                                       doNotSync: Bool = false) {
 

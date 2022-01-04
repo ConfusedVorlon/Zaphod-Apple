@@ -47,7 +47,9 @@ public struct SignupNotificationView: View {
         .padding()
         .padding(.vertical)
         .background(
-            LinearGradient(gradient: Gradient(colors: text.backgroundColors), startPoint: .topLeading, endPoint: .bottomTrailing)
+            LinearGradient(gradient: Gradient(colors: text.backgroundColors),
+                           startPoint: .topLeading,
+                           endPoint: .bottomTrailing)
         )
         .cornerRadius(10)
         .shadow(radius: 5)

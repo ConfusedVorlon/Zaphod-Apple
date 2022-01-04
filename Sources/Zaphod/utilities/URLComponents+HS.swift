@@ -11,10 +11,8 @@ extension Array where Element == URLQueryItem {
     @available(*, deprecated, message: "Use subscript directly on URLComponents")
     subscript(index: String) -> String? {
 
-        for item in self {
-            if item.name == index {
+        for item in self where item.name == index {
                 return item.value
-            }
         }
 
         return nil
@@ -29,10 +27,8 @@ extension URLComponents {
         get {
             let items = self.queryItems ?? []
 
-            for item in items {
-                if item.name == index {
-                    return item.value
-                }
+            for item in items where item.name == index {
+                return item.value
             }
 
             return nil

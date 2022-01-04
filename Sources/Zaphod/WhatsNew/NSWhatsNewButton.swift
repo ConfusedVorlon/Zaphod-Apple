@@ -54,7 +54,9 @@ public class NSWhatsNewButton: NSButton {
         title = "What's New"
         update()
 
-        changeToken = NotificationCenter.default.addObserver(forName: ZaphodInfo.Notif.changed, object: nil, queue: .main) { [weak self] _ in
+        changeToken = NotificationCenter.default.addObserver(forName: ZaphodInfo.Notif.changed,
+                                                             object: nil, queue: .main) {
+            [weak self] _ in
             self?.update()
         }
 

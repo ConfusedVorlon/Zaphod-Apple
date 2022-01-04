@@ -41,7 +41,8 @@ public struct WhatsNewButton<Label>: View where Label: View {
     public var body: some View {
         Button(action: {
             self.clicked()
-        }) {
+        },
+            label: {
             HStack(spacing: hasUnread ? 5 : 0) {
                 Circle()
                     .foregroundColor(newColor)
@@ -53,7 +54,7 @@ public struct WhatsNewButton<Label>: View where Label: View {
             }
             .animation(.easeIn(duration: 0.5), value: hasUnread)
 
-        }
+        })
     }
 
     private func clicked() {
@@ -69,9 +70,10 @@ public struct WhatsNewButton<Label>: View where Label: View {
 @available(macOS 10.15.0, iOS 13.0, *)
 struct WhatsNewButton_Previews: PreviewProvider {
     static var previews: some View {
-        WhatsNewButton(action: {_ in}) {
+        WhatsNewButton(action: {_ in},
+                       label: {
             Text("What exactly is new?")
-        }
+        })
 
         WhatsNewButton {_ in}
 
