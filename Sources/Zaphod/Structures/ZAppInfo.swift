@@ -6,6 +6,6 @@
 //
 
 import Foundation
-struct ZAppInfo:ZJson {
-    let app:ZApp
+struct ZAppInfo: ZJson {
+    let app: ZApp
 }

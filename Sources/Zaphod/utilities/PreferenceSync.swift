@@ -8,19 +8,18 @@
 import Foundation
 
 class PreferenceSync {
-    static var canSync:Bool = false {
+    static var canSync: Bool = false {
         didSet {
             if !canSync && oldValue != canSync {
                 print("Zaphod unable to synchronise keys via iCloud")
             }
         }
     }
-    
-    
+
     struct Notif {
         static let changed = NSNotification.Name.init(rawValue: "ZaphodPreferenceSyncChange")
     }
-    
+
     @objc class func updateToiCloud(_ notificationObject: Notification?) {
 
         let dict = UserDefaults.standard.dictionaryRepresentation()
@@ -54,9 +53,9 @@ class PreferenceSync {
                 }
             }
         }
-        
+
         UserDefaults.standard.synchronize()
-        
+
         if newSyncRequired {
             updateToiCloud(nil)
         }

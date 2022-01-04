@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-@available(macOS 10.15.0,iOS 13.0, *)
+@available(macOS 10.15.0, iOS 13.0, *)
 struct VStackIfCompact<Content: View>: View {
     let content: Content
-    
+
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
-    
+
 #if os(iOS)
 
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -24,8 +24,7 @@ struct VStackIfCompact<Content: View>: View {
             VStack {
                 content
             }
-        }
-        else {
+        } else {
             HStack {
                 content
             }

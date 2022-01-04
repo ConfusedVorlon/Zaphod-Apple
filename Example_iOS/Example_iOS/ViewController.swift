@@ -15,17 +15,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    
     @IBAction func debugReset(_ sender: Any) {
         Zaphod.shared.debugReset()
     }
-    
+
     @IBAction func showFAQ(_ sender: Any) {
         let faqURL = Zaphod.shared.faqURL
         openSafari(url: faqURL)
     }
-    
-    
-    
-}
 
+}

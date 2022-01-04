@@ -7,75 +7,68 @@
 
 import SwiftUI
 
-@available(macOS 10.15.0,iOS 13.0, *)
+@available(macOS 10.15.0, iOS 13.0, *)
 public struct SignupWrapperView: View {
-    var text:SignupText
-    var requests:[Request] = [.email,.notification]
-    @State var currentRequest:Request
-    @Binding var show:Bool
-    
+    var text: SignupText
+    var requests: [Request] = [.email, .notification]
+    @State var currentRequest: Request
+    @Binding var show: Bool
+
     enum Request {
         case email
         case notification
     }
-    
-    public init(text:SignupText,show:Binding<Bool>){
+
+    public init(text: SignupText, show: Binding<Bool>) {
         self.text = text
         self._show = show
         guard let firstRequest = requests.first else {
             fatalError("You have to show at least one request")
         }
-        self.currentRequest = firstRequest  
+        self.currentRequest = firstRequest
     }
-    
+
     public var body: some View {
         if show {
-            VStack() {
+            VStack {
                 Spacer()
-                
-                
+
                 if currentRequest == .email {
-                    SignupEmailView(text: text,close:{closePage()})
+                    SignupEmailView(text: text, close: {closePage()})
                             .padding()
-                            .transition(.asymmetric(insertion: .move(edge:.trailing), removal: .scale))
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .scale))
                 }
-                
+
                 if currentRequest == .notification {
-                    SignupNotificationView(text: text,close:{closePage()})
+                    SignupNotificationView(text: text, close: {closePage()})
                             .padding()
-                            .transition(.asymmetric(insertion: .move(edge:.trailing), removal: .scale))
+                            .transition(.asymmetric(insertion: .move(edge: .trailing), removal: .scale))
                 }
-                
+
                 Spacer()
             }
             .backport.vibrantBackground()
-            .transition(.move(edge:.bottom))
+            .transition(.move(edge: .bottom))
             .onAppear {
                 if let firstRequest = requests.first {
                     currentRequest = firstRequest
                 }
-                
+
             }
-        }
-        else {
+        } else {
             EmptyView()
         }
 
     }
-    
+
     func closePage() {
         withAnimation {
             if let currentIndex = requests.firstIndex(of: currentRequest),
                (currentIndex + 1) < requests.count {
                 currentRequest = requests[currentIndex + 1]
-            }
-            else {
+            } else {
                 show = false
             }
         }
     }
 }
-
-
-
-

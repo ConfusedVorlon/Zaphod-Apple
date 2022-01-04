@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct Example_SwiftUIApp: App {
-  
+
 #if os(iOS)
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 #elseif os(macOS)
-    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @NSApplicationDelegateAdaptor(AppDelegate.self) weak var appDelegate
 #endif
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()

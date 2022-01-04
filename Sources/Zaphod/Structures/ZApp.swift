@@ -7,15 +7,15 @@
 
 import Foundation
 
-public struct ZApp:ZJson {
-    public let name:String
-    public let identifier:String
-    public let slug:String
-    public let latestNews:Date
-    public let newsUrl:URL
-    public let faqUrl:URL
-    public let faqCount:Int
-    
+public struct ZApp: ZJson {
+    public let name: String
+    public let identifier: String
+    public let slug: String
+    public let latestNews: Date
+    public let newsUrl: URL
+    public let faqUrl: URL
+    public let faqCount: Int
+
     enum CodingKeys: String, CodingKey {
         case name
         case identifier

@@ -10,8 +10,6 @@ import Foundation
 import Combine
 #endif
 
-
-
 /// If you're using a recent(ish) version of iOS or MacOS, then you can use ZaphodInfo as an ObservableObject
 /// Either include directly in SwiftUI code - or use combine to watch for changes
 /// If you're on an older version - then you can watch for changes via the ZaphodInfo.Notif.changed notification
@@ -19,9 +17,9 @@ public class ZaphodInfo {
     public struct Notif {
         public static let changed = NSNotification.Name("ZaphodInfoChangedNotification")
     }
-    
+
     /// Whether there is news more recent than the last time Zaphod.markNewsAsSeen() was called
-    public var hasUnreadNews:Bool = false {
+    public var hasUnreadNews: Bool = false {
         willSet {
             sendChangeIfSupported()
         }
@@ -31,11 +29,11 @@ public class ZaphodInfo {
             }
         }
     }
-    
+
     internal func sendChangeNotification() {
         NotificationCenter.default.post(name: Notif.changed, object: self)
     }
-    
+
     private func sendChangeIfSupported() {
         if #available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *) {
             self.objectWillChange.send()
@@ -44,8 +42,6 @@ public class ZaphodInfo {
 }
 
 @available(iOS 13.0, OSX 10.15, tvOS 13.0, watchOS 6.0, *)
-extension ZaphodInfo:ObservableObject {
-    
+extension ZaphodInfo: ObservableObject {
+
 }
-
-

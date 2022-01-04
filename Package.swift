@@ -5,12 +5,12 @@ import PackageDescription
 
 let package = Package(
     name: "Zaphod",
-    platforms: [.iOS(.v11),.macOS(.v10_13),.tvOS(.v10),.watchOS(.v5)],
+    platforms: [.iOS(.v11), .macOS(.v10_13), .tvOS(.v10), .watchOS(.v5)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "Zaphod",
-            targets: ["Zaphod"]),
+            targets: ["Zaphod"])
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -24,6 +24,6 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "ZaphodTests",
-            dependencies: ["Zaphod"]),
+            dependencies: ["Zaphod"])
     ]
 )

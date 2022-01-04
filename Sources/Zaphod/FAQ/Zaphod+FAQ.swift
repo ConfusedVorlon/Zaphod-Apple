@@ -8,7 +8,7 @@
 import Foundation
 
 extension Zaphod {
-    public var faqURL:URL {
+    public var faqURL: URL {
         if let url = ZPreference.appInfo?.faqUrl {
             return url
         }
@@ -16,8 +16,8 @@ extension Zaphod {
         var urlC = URLComponents(url: Zaphod.serverURL, resolvingAgainstBaseURL: false)!
         urlC.path = "/a/na/faqs"
         urlC["identifier"]=config.identifier
-        
+
         return urlC.url!
     }
-    
+
 }

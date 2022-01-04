@@ -17,14 +17,13 @@ class EmailTextFieldValidator {
             return nil
         }
 
-        let range = NSMakeRange(0, NSString(string: trimmedText).length)
+        let range = NSRange(location: 0, length: NSString(string: trimmedText).length)
         let allMatches = dataDetector.matches(in: trimmedText,
                                               options: [],
                                               range: range)
 
         if allMatches.count == 1,
-            allMatches.first?.url?.absoluteString.contains("mailto:") == true
-        {
+            allMatches.first?.url?.absoluteString.contains("mailto:") == true {
             return trimmedText
         }
         return nil

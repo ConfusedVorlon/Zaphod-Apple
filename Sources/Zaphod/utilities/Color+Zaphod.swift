@@ -8,13 +8,12 @@
 import Foundation
 import SwiftUI
 
-
 #if os(iOS)
 import UIKit
 
-@available(macOS 10.15.0,iOS 13.0, *)
+@available(macOS 10.15.0, iOS 13.0, *)
 extension UIColor {
-    var color:Color {
+    var color: Color {
         return Color(self)
     }
 }
@@ -24,12 +23,12 @@ extension Color {
     static let backgroundColor = UIColor.systemBackground.color
 }
 #elseif os(macOS)
- 
+
 import AppKit
 
-@available(macOS 10.15.0,iOS 13.0, *)
+@available(macOS 10.15.0, iOS 13.0, *)
 extension NSColor {
-    var color:Color {
+    var color: Color {
         return Color(self)
     }
 }
@@ -40,4 +39,3 @@ extension Color {
 }
 
 #endif
-

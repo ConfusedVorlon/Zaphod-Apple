@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-@available(macOS 10.15.0,iOS 13.0, *)
+@available(macOS 10.15.0, iOS 13.0, *)
 struct CenteredIfCompact<Content: View>: View {
     let content: Content
-    
+
     init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
-    
+
 #if os(iOS)
 
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
@@ -25,8 +25,7 @@ struct CenteredIfCompact<Content: View>: View {
                 content
             }
             .frame(maxWidth:.infinity)
-        }
-        else {
+        } else {
             content
         }
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 extension URL {
-    
+
     /// URL to open the 'manage subscriptions' interface on iOS or MacOS
-    static let manageSubscriptions = URL(string:"https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions")!
+    static let manageSubscriptions = URL(string: "https://buy.itunes.apple.com/WebObjects/MZFinance.woa/wa/manageSubscriptions")!
 }
