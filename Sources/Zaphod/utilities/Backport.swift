@@ -40,4 +40,29 @@ extension Backport where Content: View {
             content.background(Color.white.opacity(0.7))
         }
     }
+    
+    @ViewBuilder
+    func defaultFocus() -> some View {
+        if #available(macOS 12.0, iOS 15, *) {
+            content.modifier(DefaultFocusModifier())
+        } else {
+            content
+        }
+    }
+}
+
+@available(macOS 12.0, iOS 15.0, *)
+struct DefaultFocusModifier: ViewModifier {
+
+    @FocusState var focused: Bool
+
+    init(){
+        focused = true
+    }
+    
+    func body(content: Content) -> some View {
+        content.focused($focused)
+
+    }
+
 }

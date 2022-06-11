@@ -75,8 +75,7 @@ struct EnterEmailView: View {
     var text: SignupText
     var close:() -> Void
 
-    @available(macOS 12.0, iOS 15.0, *)
-    @FocusState private var focusEmail: Bool
+
 
     @State private var email: String = ""
     @State private var errorMessage: String?
@@ -86,9 +85,7 @@ struct EnterEmailView: View {
         self.text = text
         self.close = close
 
-        if #available(macOS 12.0, iOS 15.0, *) {
-            focusEmail = true
-        }
+
     }
 
     var body: some View {
@@ -101,7 +98,7 @@ struct EnterEmailView: View {
                         .padding(10)
                         .cornerRadius(5)
                         .border(.selection)
-                        .focused($focusEmail)
+                        .backport.defaultFocus()
                 } else {
                     TextField("Your Email", text: $email)
                         .disableAutocorrection(true)
