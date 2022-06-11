@@ -28,12 +28,22 @@ class APIRequest {
     let method: HTTPMethod
     private var headers: [HTTPHeader] = []
     var body: Data?
-
+    
+    /// Standard Request
+    /// - Parameters:
+    ///   - method: method
+    ///   - url: url
     init(method: HTTPMethod, url: URL) {
         self.method = method
         self.url = url
     }
-
+    
+    
+    /// Request with json body upload
+    /// - Parameters:
+    ///   - method: method
+    ///   - url: url
+    ///   - body: json encodable body
     init<Body: Encodable>(method: HTTPMethod, url: URL, body: Body) throws {
         self.method = method
         self.url = url
@@ -45,7 +55,9 @@ class APIRequest {
     func add(header: HTTPHeader) {
         headers.append(header)
     }
-
+    
+    /// Http Auth header
+    /// - Parameter token: password
     func authorise(token: String) {
         add(header: HTTPHeader(field: "Authorization", value: token))
     }
